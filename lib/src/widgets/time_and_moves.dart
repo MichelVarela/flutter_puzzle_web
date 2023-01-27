@@ -1,11 +1,15 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../controllers/game_controller.dart';
+import '../utils/time_parser.dart';
 
 class TimeAndMoves extends StatelessWidget {
   const TimeAndMoves({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //final time = Provider.of<GameController>(context, listen: false).time;
+    final time = Provider.of<GameController>(context, listen: false).time;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -35,4 +39,4 @@ class TimeAndMoves extends StatelessWidget {
       ],
     );
   }
-} */
+}

@@ -1,4 +1,5 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../controllers/game_controller.dart';
 import '../controllers/game_state.dart';
@@ -30,8 +31,8 @@ class GameButtons extends StatelessWidget {
             items: [3, 4, 5, 6]
                 .map(
                   (e) => DropdownMenuItem(
-                    child: Text("${e}x$e"),
                     value: e,
+                    child: Text("${e}x$e"),
                   ),
                 )
                 .toList(),
@@ -46,4 +47,4 @@ class GameButtons extends StatelessWidget {
       ),
     );
   }
-} */
+}

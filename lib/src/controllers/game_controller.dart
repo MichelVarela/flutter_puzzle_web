@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:my_app/src/controllers/game_state.dart';
 import 'package:my_app/src/models/puzzle.dart';
 
@@ -14,6 +13,7 @@ class GameController extends ChangeNotifier {
     solved: false,
     moves: 0,
     status: GameStatus.created,
+    type: GameType.clasic,
   );
 
   final ValueNotifier<int> time = ValueNotifier(0);
