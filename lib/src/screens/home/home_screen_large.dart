@@ -12,9 +12,9 @@ class HomeScreenLarge extends StatelessWidget {
           children: [
             Container(
               color: Colors.orange,
-              child: Text('home screen large'),
+              child: const Text('home screen large'),
             ),
-            IconButton(onPressed: () => context.go('/game'), icon: Icon(Icons.discord)),
+            IconButton(onPressed: () => context.go('/game'), icon: const Icon(Icons.discord)),
           ],
         ),
       ),

@@ -10,7 +10,7 @@ class GameButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<GameController>();
-    
+
     final state = controller.state;
     return Padding(
       padding: const EdgeInsets.all(30.0),
@@ -27,22 +27,24 @@ class GameButtons extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 20.0),
-          DropdownButton<int>(
-            items: [3, 4, 5, 6]
-                .map(
-                  (e) => DropdownMenuItem(
-                    value: e,
-                    child: Text("${e}x$e"),
-                  ),
-                )
-                .toList(),
-            onChanged: (crossAxisCount) {
-              if (crossAxisCount != null && crossAxisCount != state.crossAxisCount) {
-                controller.changeGrid(crossAxisCount);
-              }
-            },
-            value: state.crossAxisCount,
-          ),
+          if (controller.state.type == GameType.clasic)
+            DropdownButton<int>(
+              items: [3, 4, 5, 6]
+                  .map(
+                    (e) => DropdownMenuItem(
+                      value: e,
+                      child: Text("${e}x$e"),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (crossAxisCount) {
+                if (crossAxisCount != null &&
+                    crossAxisCount != state.crossAxisCount) {
+                  controller.changeGrid(crossAxisCount);
+                }
+              },
+              value: state.crossAxisCount,
+            ),
         ],
       ),
     );

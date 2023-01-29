@@ -12,9 +12,9 @@ class HomeScreenMedium extends StatelessWidget {
           children: [
             Container(
               color: Colors.yellow,
-              child: Text('home screen medium'),
+              child: const Text('home screen medium'),
             ),
-            IconButton(onPressed: () => context.go('/game'), icon: Icon(Icons.discord)),
+            IconButton(onPressed: () => context.go('/game'), icon: const Icon(Icons.discord)),
           ],
         ),
       ),

@@ -8,6 +8,11 @@ enum GameStatus {
   solved,
 }
 
+enum GameType {
+  clasic,
+  picture,
+}
+
 class GameState extends Equatable {
   const GameState({
     required this.crossAxisCount,
@@ -15,6 +20,7 @@ class GameState extends Equatable {
     required this.solved,
     required this.moves,
     required this.status,
+    this.type,
   });
 
   final int crossAxisCount;
@@ -22,6 +28,7 @@ class GameState extends Equatable {
   final bool solved;
   final int moves;
   final GameStatus status;
+  final GameType? type;
 
   GameState copyWith({
     int? crossAxisCount,
@@ -29,6 +36,7 @@ class GameState extends Equatable {
     bool? solved,
     int? moves,
     GameStatus? status,
+    GameType? type,
   }) {
     return GameState(
       crossAxisCount: crossAxisCount ?? this.crossAxisCount,
@@ -36,6 +44,7 @@ class GameState extends Equatable {
       solved: solved ?? this.solved,
       moves: moves ?? this.moves,
       status: status ?? this.status,
+      type: type ?? this.type,
     );
   }
 
@@ -46,5 +55,6 @@ class GameState extends Equatable {
         solved,
         moves,
         status,
+        type,
       ];
 }

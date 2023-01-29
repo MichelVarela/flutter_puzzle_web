@@ -8,8 +8,16 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Drawer(
       backgroundColor: AppThemes.grey,
+      child: Column(
+        children: const [
+          Text('dropdown-menu')
+        ],
+      ),
     );
   }
 }
+
+

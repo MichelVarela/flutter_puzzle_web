@@ -13,6 +13,7 @@ class GameController extends ChangeNotifier {
     solved: false,
     moves: 0,
     status: GameStatus.created,
+    type: GameType.clasic,
   );
 
   final ValueNotifier<int> time = ValueNotifier(0);
@@ -76,6 +77,21 @@ class GameController extends ChangeNotifier {
     );
     _state = newState;
     notifyListeners();
+  }
+
+  void changeType(GameType type) {
+    _timer?.cancel();
+    time.value = 0;
+    final newState = GameState(
+        crossAxisCount: 3,
+        puzzle: Puzzle.create(3),
+        solved: false,
+        moves: 0,
+        status: GameStatus.created,
+        type: type);
+    _state = newState;
+    notifyListeners();
+    // print(_state);
   }
 
   @override

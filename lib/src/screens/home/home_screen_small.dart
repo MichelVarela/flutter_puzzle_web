@@ -12,9 +12,9 @@ class HomeScreenSmall extends StatelessWidget {
           children: [
             Container(
               color: Colors.indigo,
-              child: Text('home screen small'),
+              child: const Text('home screen small'),
             ),
-            IconButton(onPressed: () => context.go('/game'), icon: Icon(Icons.discord)),
+            IconButton(onPressed: () => context.go('/game'), icon: const Icon(Icons.discord)),
           ],
         ),
       ),
