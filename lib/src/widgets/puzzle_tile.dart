@@ -19,20 +19,20 @@ class PuzzleTile extends StatelessWidget {
       duration: const Duration(
         milliseconds: 200,
       ),
-      left: (tile.position.x - 1) * size,
-      top: (tile.position.y - 1) * size,
+      left: (tile.position.x - 1.0) * size,
+      top: (tile.position.y - 1.0) * size,
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           color: Colors.white,
-          margin: const EdgeInsets.all(1),
-          width: size - 2,
-          height: size - 2,
+          margin: const EdgeInsets.all(1.0),
+          width: size - 2.0,
+          height: size - 2.0,
           alignment: Alignment.center,
           child: Text(
             tile.value.toString(),
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 20.0,
             ),
           ),
         ),

@@ -27,7 +27,7 @@ class TimeAndMoves extends StatelessWidget {
             );
           },
           child: const Icon(
-            Icons.watch,
+            Icons.timer_outlined,
           ),
         ),
         Selector<GameController, int>(

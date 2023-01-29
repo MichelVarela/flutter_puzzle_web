@@ -13,7 +13,7 @@ class GameButtons extends StatelessWidget {
     
     final state = controller.state;
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -26,7 +26,7 @@ class GameButtons extends StatelessWidget {
               state.status == GameStatus.created ? "START" : "RESET",
             ),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 20.0),
           DropdownButton<int>(
             items: [3, 4, 5, 6]
                 .map(

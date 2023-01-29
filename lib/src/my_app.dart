@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/src/controllers/game_controller.dart';
+import 'package:provider/provider.dart';
 
 // routes
 import 'routes/app_router.dart';
@@ -11,10 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter().router,
-      theme: AppThemes.themeLight,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => GameController(),
+        ),
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppRouter().router,
+        theme: AppThemes.themeLight,
+      ),
     );
   }
 }

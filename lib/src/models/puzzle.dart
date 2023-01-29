@@ -73,8 +73,8 @@ class Puzzle extends Equatable {
       } else {
         // top
         for (final e in column) {
-          if (e.position.y > emptyPosition.y ||
-              e.position.y < tile.position.y) {
+          if (e.position.y < emptyPosition.y ||
+              e.position.y > tile.position.y) {
             continue;
           }
           copy[e.value - 1] = e.move(Position(
