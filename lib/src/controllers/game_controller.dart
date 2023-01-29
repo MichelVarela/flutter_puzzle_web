@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:my_app/src/controllers/game_state.dart';
 import 'package:my_app/src/models/puzzle.dart';
 
@@ -74,6 +75,7 @@ class GameController extends ChangeNotifier {
       solved: false,
       moves: 0,
       status: GameStatus.created,
+      type: GameType.clasic,
     );
     _state = newState;
     notifyListeners();
@@ -83,12 +85,13 @@ class GameController extends ChangeNotifier {
     _timer?.cancel();
     time.value = 0;
     final newState = GameState(
-        crossAxisCount: 3,
-        puzzle: Puzzle.create(3),
-        solved: false,
-        moves: 0,
-        status: GameStatus.created,
-        type: type);
+      crossAxisCount: 3,
+      puzzle: Puzzle.create(3),
+      solved: false,
+      moves: 0,
+      status: GameStatus.created,
+      type: type,
+    );
     _state = newState;
     notifyListeners();
     // print(_state);

@@ -18,7 +18,7 @@ class ButtonOutlined extends StatelessWidget {
         fontSize: 12.0, fontWeight: FontWeight.bold, color: AppThemes.primary);
 
     return Material(
-      color: Colors.transparent,
+      color: Colors.white,
       borderRadius: BorderRadius.circular(10.0),
       child: InkWell(
         onTap: () => onTap(),

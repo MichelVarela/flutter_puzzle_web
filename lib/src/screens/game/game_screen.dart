@@ -9,7 +9,7 @@ import 'package:my_app/src/screens/game/game_screen_large.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/game_controller.dart';
-import '../../utils/time_parser.dart';
+import '../../widgets/show_winner_dialog.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class GameScreen extends StatelessWidget {
         controller.onFinish.listen(
           (_) {
             Timer(
-              const Duration(milliseconds: 300),
+              const Duration(milliseconds: 200),
               () {
                 showWinnerDialog(context, controller);
               },
@@ -36,31 +36,6 @@ class GameScreen extends StatelessWidget {
         smallChild: GameScreenSmall(),
         mediumChild: GameScreenMedium(),
         largeChild: GameScreenLarge(),
-      ),
-    );
-  }
-
-  void showWinnerDialog(
-    BuildContext context,
-    GameController controller,
-  ) {
-    showDialog(
-      barrierColor: const Color.fromRGBO(0, 0, 0, 0.3),
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text("GREAT JOB"),
-            Text("moves: ${controller.state.moves}"),
-            Text("time: ${parseTime(controller.time.value)}"),
-            const SizedBox(height: 20.0),
-            TextButton(
-              child: const Text("OK"),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ],
-        ),
       ),
     );
   }
