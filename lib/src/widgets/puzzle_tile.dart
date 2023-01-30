@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/src/controllers/game_controller.dart';
 import 'package:my_app/src/controllers/game_state.dart';
+import 'package:my_app/src/themes/app_theme.dart';
 import 'package:provider/provider.dart';
 
 import '../models/tile.dart';
@@ -30,15 +31,19 @@ class PuzzleTile extends StatelessWidget {
         onTap: onTap,
         child: controller.state.type == GameType.clasic
             ? Container(
-                color: Colors.white,
-                margin: const EdgeInsets.all(1.0),
-                width: size - 2.0,
-                height: size - 2.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: AppTheme.primary,
+                ),
+                width: size - 5.0,
+                height: size - 5.0,
                 alignment: Alignment.center,
                 child: Text(
                   tile.value.toString(),
                   style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.white,
                   ),
                 ),
               )
@@ -47,13 +52,16 @@ class PuzzleTile extends StatelessWidget {
                 width: size - 2.0,
                 height: size - 2.0,
                 alignment: Alignment.center,
-                child: FadeInImage(
-                  placeholder: const AssetImage('assets/images/no-image.jpg'),
-                  image: AssetImage(
-                      'assets/images/separated/0${tile.value.toString()}.png'),
-                  fit: BoxFit.cover,
-                  height: double.infinity,
-                  width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: FadeInImage(
+                    placeholder: const AssetImage('assets/images/no-image.jpg'),
+                    image: AssetImage(
+                        'assets/images/separated/0${tile.value.toString()}.png'),
+                    fit: BoxFit.cover,
+                    height: double.infinity,
+                    width: double.infinity,
+                  ),
                 ),
               ),
       ),

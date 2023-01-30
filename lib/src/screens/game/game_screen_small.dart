@@ -9,22 +9,28 @@ class GameScreenSmall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(63, 81, 181, 1),
+      // backgroundColor: const Color.fromRGBO(63, 81, 181, 1),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              TimeAndMoves(),
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: PuzzleInteractor(),
-                ),
+          child: Center(
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 400.0),
+              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  TimeAndMoves(),
+                  Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: PuzzleInteractor(),
+                    ),
+                  ),
+                  GameButtons(),
+                ],
               ),
-              GameButtons(),
-            ],
+            ),
           ),
         ),
       ),

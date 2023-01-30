@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/src/themes/app_theme.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/game_controller.dart';
@@ -15,44 +16,68 @@ class GameButtons extends StatelessWidget {
     final state = controller.state;
 
     return Padding(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextButton.icon(
-                onPressed: controller.shuffle,
-                icon: const Icon(
-                  Icons.replay_rounded,
-                ),
-                label: Text(
-                  state.status == GameStatus.created ? "START" : "RESET",
-                ),
+              ButtonOutlined(
+                name: state.status == GameStatus.created ? "START" : "RESET",
+                onTap: controller.shuffle,
+                icon: Icons.replay_rounded,
               ),
               const SizedBox(width: 20.0),
               if (controller.state.type == GameType.clasic)
-                DropdownButton<int>(
-                  items: [3, 4, 5, 6]
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text("${e}x$e"),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (crossAxisCount) {
-                    if (crossAxisCount != null &&
-                        crossAxisCount != state.crossAxisCount) {
-                      controller.changeGrid(crossAxisCount);
-                    }
-                  },
-                  value: state.crossAxisCount,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2.0, color: AppTheme.primary),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  height: 40.0,
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: DropdownButton<int>(
+                    // style: textStyle,
+                    // alignment: Alignment.center,
+                    borderRadius: BorderRadius.circular(10.0),
+                    underline: Container(height: 0.0),
+                    iconEnabledColor: AppTheme.primary,
+                    items: [3, 4, 5, 6]
+                        .map(
+                          (e) => DropdownMenuItem(
+                            value: e,
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.grid_3x3,
+                                  size: 16.0,
+                                  color: AppTheme.primary,
+                                ),
+                                Text(
+                                  "${e}x$e",
+                                  style: AppTheme.textStyle,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (crossAxisCount) {
+                      if (crossAxisCount != null &&
+                          crossAxisCount != state.crossAxisCount) {
+                        controller.changeGrid(crossAxisCount);
+                      }
+                    },
+                    value: state.crossAxisCount,
+                  ),
                 ),
             ],
           ),
+          const SizedBox(
+            height: 10.0,
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ButtonOutlined(
                   name: 'Clasic',
@@ -62,6 +87,9 @@ class GameButtons extends StatelessWidget {
                   name: 'Picture',
                   onTap: () => controller.changeType(GameType.picture)),
             ],
+          ),
+          const SizedBox(
+            height: 10.0,
           ),
           ButtonOutlined(name: 'Pick image', onTap: () => getImage()),
         ],

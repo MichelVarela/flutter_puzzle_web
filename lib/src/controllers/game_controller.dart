@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:my_app/src/controllers/game_state.dart';
 import 'package:my_app/src/models/puzzle.dart';
 

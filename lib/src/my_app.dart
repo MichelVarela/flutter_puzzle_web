@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'routes/app_router.dart';
 
 // app_themes
-import 'package:my_app/src/themes/app_themes.dart';
+import 'package:my_app/src/themes/app_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter().router,
-      theme: AppThemes.themeLight,
+      theme: AppTheme.themeLight,
     );
   }
 }

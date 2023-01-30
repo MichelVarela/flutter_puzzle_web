@@ -7,5 +7,6 @@ Future<void> getImage() async {
 
   if (image == null) return;
   final img = Image.memory(await image.readAsBytes());
+  // ignore: avoid_print
   print(img);
 }

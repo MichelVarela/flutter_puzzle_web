@@ -11,7 +11,7 @@ class PuzzleInteractor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black12,
+      color: Colors.transparent,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final controller = context.watch<GameController>();

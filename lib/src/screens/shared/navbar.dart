@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 // styles
-import 'package:my_app/src/themes/app_themes.dart';
+import 'package:my_app/src/themes/app_theme.dart';
 
 class Navbar extends HookWidget implements PreferredSizeWidget {
   const Navbar({super.key});
@@ -13,14 +13,14 @@ class Navbar extends HookWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppThemes.primary,
+      color: AppTheme.primary,
       padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IconButton(
             icon: const Icon(Icons.menu),
-            color: AppThemes.white,
+            color: AppTheme.white,
             onPressed: () => Scaffold.of(context).openEndDrawer(),
           ),
         ],
