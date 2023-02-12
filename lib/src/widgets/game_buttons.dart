@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../controllers/game_controller.dart';
 import '../controllers/game_state.dart';
-import '../utils/get_image.dart';
 import 'button_outlined.dart';
 
 class GameButtons extends StatelessWidget {
@@ -13,6 +12,7 @@ class GameButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<GameController>();
+    final image = Provider.of<GameController>(context, listen: false).bytes;
     final state = controller.state;
 
     return Padding(
@@ -28,49 +28,46 @@ class GameButtons extends StatelessWidget {
                 icon: Icons.replay_rounded,
               ),
               const SizedBox(width: 20.0),
-              if (controller.state.type == GameType.clasic)
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 2.0, color: AppTheme.primary),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  height: 40.0,
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: DropdownButton<int>(
-                    // style: textStyle,
-                    // alignment: Alignment.center,
-                    borderRadius: BorderRadius.circular(10.0),
-                    underline: Container(height: 0.0),
-                    iconEnabledColor: AppTheme.primary,
-                    items: [3, 4, 5, 6]
-                        .map(
-                          (e) => DropdownMenuItem(
-                            value: e,
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.grid_3x3,
-                                  size: 16.0,
-                                  color: AppTheme.primary,
-                                ),
-                                Text(
-                                  "${e}x$e",
-                                  style: AppTheme.textStyle,
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: (crossAxisCount) {
-                      if (crossAxisCount != null &&
-                          crossAxisCount != state.crossAxisCount) {
-                        controller.changeGrid(crossAxisCount);
-                      }
-                    },
-                    value: state.crossAxisCount,
-                  ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 2.0, color: AppTheme.primary),
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
+                height: 40.0,
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: DropdownButton<int>(
+                  borderRadius: BorderRadius.circular(10.0),
+                  underline: Container(height: 0.0),
+                  iconEnabledColor: AppTheme.primary,
+                  items: [3, 4, 5, 6]
+                      .map(
+                        (e) => DropdownMenuItem(
+                          value: e,
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.grid_3x3,
+                                size: 16.0,
+                                color: AppTheme.primary,
+                              ),
+                              Text(
+                                "${e}x$e",
+                                style: AppTheme.textStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (crossAxisCount) {
+                    if (crossAxisCount != null &&
+                        crossAxisCount != state.crossAxisCount) {
+                      controller.changeGrid(crossAxisCount);
+                    }
+                  },
+                  value: state.crossAxisCount,
+                ),
+              ),
             ],
           ),
           const SizedBox(
@@ -91,7 +88,17 @@ class GameButtons extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
-          ButtonOutlined(name: 'Pick image', onTap: () => getImage()),
+          if (state.type == GameType.picture)
+            Column(
+              children: [
+                ButtonOutlined(
+                    name: 'Pick image', onTap: () => controller.getImage()),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                if (image != null) Image.memory(image),
+              ],
+            )
         ],
       ),
     );

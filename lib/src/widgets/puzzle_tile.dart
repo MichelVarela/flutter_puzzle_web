@@ -7,15 +7,18 @@ import 'package:provider/provider.dart';
 import '../models/tile.dart';
 
 class PuzzleTile extends StatelessWidget {
-  final Tile tile;
-  final double size;
-  final VoidCallback onTap;
   const PuzzleTile({
     Key? key,
     required this.tile,
     required this.size,
+    required this.imageTile,
     required this.onTap,
   }) : super(key: key);
+
+  final Tile tile;
+  final double size;
+  final Image? imageTile;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +57,16 @@ class PuzzleTile extends StatelessWidget {
                 alignment: Alignment.center,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
+                  child: imageTile,
+                ),
+              ),
+            /* Container(
+                color: Colors.transparent,
+                width: size - 2.0,
+                height: size - 2.0,
+                alignment: Alignment.center,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
                   child: FadeInImage(
                     placeholder: const AssetImage('assets/images/no-image.jpg'),
                     image: AssetImage(
@@ -63,7 +76,7 @@ class PuzzleTile extends StatelessWidget {
                     width: double.infinity,
                   ),
                 ),
-              ),
+              ), */
       ),
     );
   }
