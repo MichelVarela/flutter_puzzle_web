@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/src/utils/color_brightness.dart';
+import 'package:provider/provider.dart';
 
+import '../../controllers/game_controller.dart';
+import '../../themes/app_theme.dart';
 import '../../widgets/game_buttons.dart';
 import '../../widgets/puzzle_interactor.dart';
 import '../../widgets/time_and_moves.dart';
@@ -9,7 +13,19 @@ class GameScreenLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<GameController>();
+    final palette = Provider.of<GameController>(context, listen: false).palette;
+    Color bg() {
+      if (palette != null) {
+        if (palette.darkMutedColor?.color != null) {
+          return palette.darkMutedColor!.color;
+        }
+      }
+      return AppTheme.primary.darken(0.2);
+    }
+
     return Scaffold(
+      backgroundColor: bg(),
       body: SingleChildScrollView(
         child: Center(
           child: Container(

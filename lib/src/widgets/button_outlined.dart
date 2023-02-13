@@ -18,13 +18,13 @@ class ButtonOutlined extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      borderRadius: BorderRadius.circular(10.0),
+      borderRadius: BorderRadius.circular(20.0),
       child: InkWell(
         onTap: () => onTap(),
         child: Container(
             decoration: BoxDecoration(
               border: Border.all(width: 2.0, color: AppTheme.primary),
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(20.0),
             ),
             height: 40.0,
             width: 95.0,

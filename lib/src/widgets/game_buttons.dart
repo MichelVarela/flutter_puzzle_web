@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/src/themes/app_theme.dart';
+import 'package:my_app/src/utils/color_brightness.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/game_controller.dart';
@@ -13,6 +14,15 @@ class GameButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = context.watch<GameController>();
     final image = Provider.of<GameController>(context, listen: false).bytes;
+    final palette = Provider.of<GameController>(context, listen: false).palette;
+    Color button() {
+      if (palette != null) {
+        if (palette.vibrantColor?.color != null) {
+          return palette.vibrantColor!.color;
+        }
+      }
+      return AppTheme.primary;
+    }
     final state = controller.state;
 
     return Padding(
@@ -30,16 +40,18 @@ class GameButtons extends StatelessWidget {
               const SizedBox(width: 20.0),
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(width: 2.0, color: AppTheme.primary),
-                  borderRadius: BorderRadius.circular(10.0),
+                  color: button(),
+                  border: Border.all(width: 2.0, color: button()),
+                  borderRadius: BorderRadius.circular(20.0),
                 ),
                 height: 40.0,
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: DropdownButton<int>(
+                  dropdownColor: button(),
                   borderRadius: BorderRadius.circular(10.0),
                   underline: Container(height: 0.0),
                   iconEnabledColor: AppTheme.white,
-                  items: [3, 4, 5, 6]
+                  items: [3, 4, 5]
                       .map(
                         (e) => DropdownMenuItem(
                           value: e,
