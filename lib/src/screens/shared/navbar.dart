@@ -20,7 +20,7 @@ class Navbar extends HookWidget implements PreferredSizeWidget {
         children: [
           IconButton(
             icon: const Icon(Icons.menu),
-            color: AppTheme.white,
+            color: AppTheme.whiteOp,
             onPressed: () => Scaffold.of(context).openEndDrawer(),
           ),
         ],

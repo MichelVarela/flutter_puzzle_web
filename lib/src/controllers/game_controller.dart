@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +10,8 @@ import '../models/tile.dart';
 // images
 import '../utils/image_splitter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:image/image.dart' as image_lib;
+
+import 'package:palette_generator/palette_generator.dart';
 
 class GameController extends ChangeNotifier {
   GameState _state = GameState(
@@ -41,6 +41,8 @@ class GameController extends ChangeNotifier {
   Uint8List? bytes;
 
   List<Image>? images;
+
+  PaletteGenerator? palette;
 
   void onTileTapped(Tile tile) {
     final canMove = puzzle.canMove(tile.position);
@@ -108,21 +110,29 @@ class GameController extends ChangeNotifier {
     if (type == GameType.picture) {
       final source = await rootBundle.load('assets/images/logo.png');
       bytes = Uint8List.fromList(Uint8List.view(source.buffer));
-      images = await _splitter.runSplitterIsolate(bytes!, _state.crossAxisCount);
+      images =
+          await _splitter.runSplitterIsolate(bytes!, _state.crossAxisCount);
+
+      final image = Image.memory(bytes!);
+      palette = await _splitter.getImagePalette(image.image);
     }
 
     if (type == GameType.clasic) {
       bytes = null;
       images = null;
+      palette = null;
     }
 
-    resetGame(type: type);
+    resetGame(type: type, crossAxisCount: _state.crossAxisCount);
     notifyListeners();
   }
 
   void getImage() async {
     bytes = await _splitter.getImage(picker: ImagePicker());
     images = await _splitter.runSplitterIsolate(bytes!, _state.crossAxisCount);
+
+    final image = Image.memory(bytes!);
+    palette = await _splitter.getImagePalette(image.image);
     notifyListeners();
   }
 

@@ -36,7 +36,7 @@ class PuzzleTile extends StatelessWidget {
             ? Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
-                  color: AppTheme.primary,
+                  color: AppTheme.clrPuzzle,
                 ),
                 width: size - 5.0,
                 height: size - 5.0,
@@ -44,9 +44,9 @@ class PuzzleTile extends StatelessWidget {
                 child: Text(
                   tile.value.toString(),
                   style: const TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 45.0,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.white,
+                    color: AppTheme.whiteOp,
                   ),
                 ),
               )
@@ -60,23 +60,6 @@ class PuzzleTile extends StatelessWidget {
                   child: imageTile,
                 ),
               ),
-            /* Container(
-                color: Colors.transparent,
-                width: size - 2.0,
-                height: size - 2.0,
-                alignment: Alignment.center,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
-                  child: FadeInImage(
-                    placeholder: const AssetImage('assets/images/no-image.jpg'),
-                    image: AssetImage(
-                        'assets/images/separated/0${tile.value.toString()}.png'),
-                    fit: BoxFit.cover,
-                    height: double.infinity,
-                    width: double.infinity,
-                  ),
-                ),
-              ), */
       ),
     );
   }

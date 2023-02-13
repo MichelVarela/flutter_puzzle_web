@@ -33,7 +33,7 @@ class TimeAndMoves extends StatelessWidget {
             child: const Icon(
               Icons.timer_outlined,
               size: 20.0,
-              color: AppTheme.primary,
+              color: AppTheme.white,
             ),
           ),
           Selector<GameController, int>(

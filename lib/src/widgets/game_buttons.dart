@@ -38,7 +38,7 @@ class GameButtons extends StatelessWidget {
                 child: DropdownButton<int>(
                   borderRadius: BorderRadius.circular(10.0),
                   underline: Container(height: 0.0),
-                  iconEnabledColor: AppTheme.primary,
+                  iconEnabledColor: AppTheme.white,
                   items: [3, 4, 5, 6]
                       .map(
                         (e) => DropdownMenuItem(
@@ -48,7 +48,7 @@ class GameButtons extends StatelessWidget {
                               const Icon(
                                 Icons.grid_3x3,
                                 size: 16.0,
-                                color: AppTheme.primary,
+                                color: AppTheme.white,
                               ),
                               Text(
                                 "${e}x$e",
@@ -94,9 +94,18 @@ class GameButtons extends StatelessWidget {
                 ButtonOutlined(
                     name: 'Pick image', onTap: () => controller.getImage()),
                 const SizedBox(
-                  height: 10.0,
+                  height: 20.0,
                 ),
-                if (image != null) Image.memory(image),
+                if (image != null)
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Image.memory(
+                      image,
+                      width: 150.0,
+                      height: 150.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
               ],
             )
         ],

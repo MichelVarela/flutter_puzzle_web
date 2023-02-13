@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as image_lib;
 import 'package:image_picker/image_picker.dart';
-// import 'package:palette_generator/palette_generator.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 class ImageSplitter {
   List<Image> splitImage(Map<String, dynamic> mapData) {
@@ -38,11 +38,11 @@ class ImageSplitter {
     return output;
   }
 
-  /* Future<PaletteGenerator> getImagePalette(ImageProvider imageProvider) async {
+  Future<PaletteGenerator> getImagePalette(ImageProvider imageProvider) async {
     final paletteGenerator =
         await PaletteGenerator.fromImageProvider(imageProvider);
     return paletteGenerator;
-  } */
+  }
 
   Future getImage({required ImagePicker picker}) async {
     final pickedFile = await picker.pickImage(

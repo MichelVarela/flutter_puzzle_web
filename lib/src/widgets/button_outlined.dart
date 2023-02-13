@@ -35,7 +35,7 @@ class ButtonOutlined extends StatelessWidget {
               children: [
                 if (icon != null)
                   Row(children: [
-                    Icon(icon, size: 16.0, color: AppTheme.primary),
+                    Icon(icon, size: 16.0, color: AppTheme.white),
                     const SizedBox(width: 5.0),
                   ]),
                 Text(name, style: AppTheme.textStyle),
