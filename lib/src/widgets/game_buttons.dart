@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/src/themes/app_theme.dart';
-import 'package:my_app/src/utils/color_brightness.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/game_controller.dart';
@@ -114,7 +113,6 @@ class GameButtons extends StatelessWidget {
                     child: Image.memory(
                       image,
                       width: 150.0,
-                      height: 150.0,
                       fit: BoxFit.cover,
                     ),
                   ),

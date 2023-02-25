@@ -128,6 +128,7 @@ class GameController extends ChangeNotifier {
   }
 
   void getImage() async {
+    resetGame();
     bytes = await _splitter.getImage(picker: ImagePicker());
     images = await _splitter.runSplitterIsolate(bytes!, _state.crossAxisCount);
 

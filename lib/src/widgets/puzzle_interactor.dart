@@ -15,8 +15,7 @@ class PuzzleInteractor extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final controller = context.watch<GameController>();
-          final images =
-              Provider.of<GameController>(context, listen: false).images;
+          final images = Provider.of<GameController>(context, listen: false).images;
           final state = controller.state;
           final tileSize = constraints.maxWidth / state.crossAxisCount;
 

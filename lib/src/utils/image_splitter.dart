@@ -53,8 +53,6 @@ class ImageSplitter {
     );
 
     if (pickedFile != null) {
-      // final image = Image.memory(await pickedFile.readAsBytes());
-      // final palette = await getImagePalette(image.image);
       final bytes = await pickedFile.readAsBytes();
       log('Image properties retrieved');
       return bytes;
@@ -62,26 +60,6 @@ class ImageSplitter {
 
     return null;
   }
-
-  /* Future<Tuple3<Image, Uint8List, PaletteGenerator>?> getImage(
-      {required ImagePicker picker}) async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      // final imageFile = File(pickedFile.path);
-      // final image = Image.file(File(pickedFile.path));
-      final image =  Image.memory(await pickedFile.readAsBytes());
-      final palette = await getImagePalette(image.image);
-      // final PaletteGenerator palette = await getImagePalette(
-      //   FileImage(imageFile),
-      // );
-      final bytes = await pickedFile.readAsBytes();
-      log('Image properties retrieved');
-      return Tuple3(image, bytes, palette);
-    }
-
-    return null;
-  } */
 
   Future<List<Image>> runSplitterIsolate(List<int> input, int size) async {
     final Map<String, dynamic> data = {
