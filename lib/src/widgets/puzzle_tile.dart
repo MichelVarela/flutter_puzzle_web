@@ -23,6 +23,8 @@ class PuzzleTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<GameController>();
+    final state = controller.state;
+    final windowSize = MediaQuery.of(context).size.width;
 
     return AnimatedPositioned(
       duration: const Duration(
@@ -43,8 +45,8 @@ class PuzzleTile extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   tile.value.toString(),
-                  style: const TextStyle(
-                    fontSize: 45.0,
+                  style: TextStyle(
+                    fontSize: state.crossAxisCount > 3 && windowSize < 768 ? 30.0 : 45.0,
                     fontWeight: FontWeight.bold,
                     color: AppTheme.whiteOp,
                   ),

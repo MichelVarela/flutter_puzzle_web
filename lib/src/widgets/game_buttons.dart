@@ -12,6 +12,8 @@ class GameButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<GameController>();
+    final state = controller.state;
+
     final image = Provider.of<GameController>(context, listen: false).bytes;
     final palette = Provider.of<GameController>(context, listen: false).palette;
     Color button() {
@@ -22,7 +24,6 @@ class GameButtons extends StatelessWidget {
       }
       return AppTheme.primary;
     }
-    final state = controller.state;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
@@ -31,69 +32,81 @@ class GameButtons extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ButtonOutlined(
-                name: state.status == GameStatus.created ? "START" : "RESET",
-                onTap: controller.shuffle,
-                icon: Icons.replay_rounded,
+              Expanded(
+                flex: 2,
+                child: ButtonOutlined(
+                  name: state.status == GameStatus.created ? "START" : "RESET",
+                  onTap: controller.shuffle,
+                  icon: Icons.replay_rounded,
+                ),
               ),
               const SizedBox(width: 20.0),
-              Container(
-                decoration: BoxDecoration(
-                  color: button(),
-                  border: Border.all(width: 2.0, color: button()),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                height: 40.0,
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: DropdownButton<int>(
-                  dropdownColor: button(),
-                  borderRadius: BorderRadius.circular(10.0),
-                  underline: Container(height: 0.0),
-                  iconEnabledColor: AppTheme.white,
-                  items: [3, 4, 5]
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.grid_3x3,
-                                size: 16.0,
-                                color: AppTheme.white,
-                              ),
-                              Text(
-                                "${e}x$e",
-                                style: AppTheme.textStyle,
-                              ),
-                            ],
+              Expanded(
+                flex: 2,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: button(),
+                    border: Border.all(width: 2.0, color: button()),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  height: 40.0,
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: DropdownButton<int>(
+                    isExpanded: true,
+                    dropdownColor: button(),
+                    borderRadius: BorderRadius.circular(10.0),
+                    underline: Container(height: 0.0),
+                    iconEnabledColor: AppTheme.white,
+                    items: [3, 4, 5]
+                        .map(
+                          (e) => DropdownMenuItem(
+                            value: e,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.grid_3x3,
+                                  size: 16.0,
+                                  color: AppTheme.white,
+                                ),
+                                Text(
+                                  "${e}x$e",
+                                  style: AppTheme.textStyle,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (crossAxisCount) {
-                    if (crossAxisCount != null &&
-                        crossAxisCount != state.crossAxisCount) {
-                      controller.changeGrid(crossAxisCount);
-                    }
-                  },
-                  value: state.crossAxisCount,
+                        )
+                        .toList(),
+                    onChanged: (crossAxisCount) {
+                      if (crossAxisCount != null &&
+                          crossAxisCount != state.crossAxisCount) {
+                        controller.changeGrid(crossAxisCount);
+                      }
+                    },
+                    value: state.crossAxisCount,
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(
-            height: 10.0,
-          ),
+          const SizedBox(height: 10.0,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ButtonOutlined(
-                  name: 'Clasic',
-                  onTap: () => controller.changeType(GameType.clasic)),
+              Expanded(
+                flex: 2,
+                child: ButtonOutlined(
+                    name: 'Clasic',
+                    onTap: () => controller.changeType(GameType.clasic)),
+              ),
               const SizedBox(width: 20.0),
-              ButtonOutlined(
-                  name: 'Picture',
-                  onTap: () => controller.changeType(GameType.picture)),
+              Expanded(
+                flex: 2,
+                child: ButtonOutlined(
+                    name: 'Picture',
+                    onTap: () => controller.changeType(GameType.picture)),
+              ),
             ],
           ),
           const SizedBox(
@@ -102,8 +115,11 @@ class GameButtons extends StatelessWidget {
           if (state.type == GameType.picture)
             Column(
               children: [
-                ButtonOutlined(
-                    name: 'Pick image', onTap: () => controller.getImage()),
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 120.0),
+                  child: ButtonOutlined(
+                      name: 'Pick image', onTap: () => controller.getImage()),
+                ),
                 const SizedBox(
                   height: 20.0,
                 ),

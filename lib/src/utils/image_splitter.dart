@@ -16,7 +16,7 @@ class ImageSplitter {
     int x = 0, y = 0;
     int width = (image.width / size).round();
     int height = (image.height / size).round();
-    print('width: $width, height: $height');
+    // print('width: $width, height: $height');
 
     // split image to parts
     List<image_lib.Image> parts = [];
