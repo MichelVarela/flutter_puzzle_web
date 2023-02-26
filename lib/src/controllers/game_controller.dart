@@ -128,12 +128,14 @@ class GameController extends ChangeNotifier {
   }
 
   void getImage() async {
-    resetGame();
+    resetGame(crossAxisCount: _state.crossAxisCount);
     bytes = await _splitter.getImage(picker: ImagePicker());
+    print('bytes: $bytes');
     images = await _splitter.runSplitterIsolate(bytes!, _state.crossAxisCount);
 
     final image = Image.memory(bytes!);
     palette = await _splitter.getImagePalette(image.image);
+    print('palette: $palette');
     notifyListeners();
   }
 
