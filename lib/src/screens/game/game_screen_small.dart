@@ -34,16 +34,18 @@ class GameScreenSmall extends StatelessWidget {
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  TimeAndMoves(),
-                  Padding(
+                children: [
+                  const TimeAndMoves(),
+                  const Padding(
                     padding: EdgeInsets.all(20.0),
                     child: AspectRatio(
                       aspectRatio: 1,
                       child: PuzzleInteractor(),
                     ),
                   ),
-                  GameButtons(),
+                  Container(
+                    constraints: const BoxConstraints(maxWidth: 300.0),
+                    child: const GameButtons()),
                 ],
               ),
             ),

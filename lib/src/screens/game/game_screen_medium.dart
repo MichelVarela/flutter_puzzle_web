@@ -30,24 +30,28 @@ class GameScreenMedium extends StatelessWidget {
         child: Center(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 992.0),
-            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 350.0),
-                  child: const AspectRatio(
+                const Expanded(
+                  flex: 2,
+                  child: AspectRatio(
                     aspectRatio: 1,
                     child: PuzzleInteractor(),
                   ),
                 ),
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 300.0),
+                Expanded(
+                  flex: 2,
                   child: Column(
-                    children: const [
-                      TimeAndMoves(),
-                      GameButtons(),
+                    children: [
+                      const TimeAndMoves(),
+                      Container(
+                        constraints: const BoxConstraints(maxWidth: 300.0),
+                        child: const GameButtons(),
+                      ),
                     ],
                   ),
                 ),

@@ -30,29 +30,33 @@ class GameScreenLarge extends StatelessWidget {
         child: Center(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 1024.0),
-            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 100.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 100.0),
             child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      constraints: const BoxConstraints(maxWidth: 400.0),
-                      child: const AspectRatio(
-                        aspectRatio: 1,
-                        child: PuzzleInteractor(),
-                      ),
-                    ),
-                    Container(
-                      constraints: const BoxConstraints(maxWidth: 300.0),
-                      child: Column(
-                        children: const [
-                          TimeAndMoves(),
-                          GameButtons(),
-                        ],
-                      ),
-                    ),
-                  ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Expanded(
+                  flex: 2,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: PuzzleInteractor(),
+                  ),
                 ),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      const TimeAndMoves(),
+                      Container(
+                        constraints: const BoxConstraints(maxWidth: 300.0),
+                        child: const GameButtons(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -37,7 +37,9 @@ class PuzzleTile extends StatelessWidget {
         child: controller.state.type == GameType.clasic
             ? Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: state.crossAxisCount > 3 && windowSize < 420
+                      ? BorderRadius.circular(15.0)
+                      : BorderRadius.circular(20.0),
                   color: AppTheme.clrPuzzle,
                 ),
                 width: size - 5.0,
@@ -46,7 +48,9 @@ class PuzzleTile extends StatelessWidget {
                 child: Text(
                   tile.value.toString(),
                   style: TextStyle(
-                    fontSize: state.crossAxisCount > 3 && windowSize < 768 ? 30.0 : 45.0,
+                    fontSize: state.crossAxisCount > 3 && windowSize < 768
+                        ? 30.0
+                        : 45.0,
                     fontWeight: FontWeight.bold,
                     color: AppTheme.whiteOp,
                   ),
@@ -58,7 +62,9 @@ class PuzzleTile extends StatelessWidget {
                 height: size - 2.0,
                 alignment: Alignment.center,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: state.crossAxisCount > 3 && windowSize < 420
+                      ? BorderRadius.circular(15.0)
+                      : BorderRadius.circular(20.0),
                   child: imageTile,
                 ),
               ),

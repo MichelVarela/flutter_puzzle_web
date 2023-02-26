@@ -35,13 +35,11 @@ class ButtonOutlined extends StatelessWidget {
       child: InkWell(
         onTap: () => onTap(),
         child: Container(
-          //constraints: BoxConstraints(maxWidth: 100.0),
             decoration: BoxDecoration(
               border: Border.all(width: 2.0, color: button()),
               borderRadius: BorderRadius.circular(20.0),
             ),
             height: 40.0,
-            //width: 95.0,
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Row(

@@ -116,9 +116,9 @@ class GameButtons extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  constraints: const BoxConstraints(maxWidth: 120.0),
+                  constraints: const BoxConstraints(maxWidth: 150.0),
                   child: ButtonOutlined(
-                      name: 'Pick image', onTap: () => controller.getImage()),
+                      name: 'Pick image', icon: Icons.photo_library_outlined, onTap: () => controller.getImage()),
                 ),
                 const SizedBox(
                   height: 20.0,
