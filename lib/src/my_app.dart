@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      title: 'Flutter Puzzle',
       routerConfig: AppRouter().router,
       theme: AppTheme.themeLight,
     );
