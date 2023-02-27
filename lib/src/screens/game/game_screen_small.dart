@@ -12,7 +12,7 @@ class GameScreenSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = context.watch<GameController>();
+    final controller = context.watch<GameController>();
     final palette = Provider.of<GameController>(context, listen: false).palette;
     Color bg() {
       if (palette != null) {
@@ -44,8 +44,8 @@ class GameScreenSmall extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    constraints: const BoxConstraints(maxWidth: 300.0),
-                    child: const GameButtons()),
+                      constraints: const BoxConstraints(maxWidth: 300.0),
+                      child: const GameButtons()),
                 ],
               ),
             ),
